@@ -1,20 +1,24 @@
 import { IFilters } from '../types/store';
-import { IFiltersFetchAction } from '../types/actions';
+import { FiltersActions } from '../types/actions';
 import {
+	FILTERS_CHANGED_ACTIVE,
 	FILTERS_FETCHED,
-	FILTERS_FETCHING,
-	FILTERS_FETCHING_ERROR,
+	FILTERS_LOADING,
+	FILTERS_LOADING_ERROR,
 } from '../constants';
-import { Statuses } from '../types/enums';
+import { Elements, Statuses } from '../types/enums';
 
 const initialState: IFilters = {
-	filters: [],
+	filters: {
+		activeFilter: Elements.ALL,
+		elements: [],
+	},
 	filtersLoadingStatus: Statuses.OK,
 };
 
-const filtersReducer = (state = initialState, action: IFiltersFetchAction) => {
+const filtersReducer = (state = initialState, action: FiltersActions) => {
 	switch (action.type) {
-		case FILTERS_FETCHING:
+		case FILTERS_LOADING:
 			return {
 				...state,
 				filtersLoadingStatus: Statuses.LOADING,
@@ -25,7 +29,16 @@ const filtersReducer = (state = initialState, action: IFiltersFetchAction) => {
 				filters: action.payload,
 				filtersLoadingStatus: Statuses.OK,
 			};
-		case FILTERS_FETCHING_ERROR:
+		case FILTERS_CHANGED_ACTIVE:
+			return {
+				...state,
+				filters: {
+					activeFilter: action.payload,
+					elements: state.filters.elements,
+				},
+				filtersLoadingStatus: Statuses.OK,
+			};
+		case FILTERS_LOADING_ERROR:
 			return {
 				...state,
 				filtersLoadingStatus: Statuses.ERROR,

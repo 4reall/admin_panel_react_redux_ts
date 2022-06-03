@@ -1,54 +1,31 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { IFilters, IStore } from '../../../types/store';
-import { useHttp } from '../../../hooks/useHttp';
-import {
-	filtersFetched,
-	filtersFetching,
-	filtersFetchingError,
-} from '../../../actions';
-import { FILTERS_URL } from '../../../constants';
+import { useSelector } from 'react-redux';
+import { useField } from 'formik';
+
+import { IStore } from '../../../types/store';
 import { Elements, Statuses } from '../../../types/enums';
 
 interface SelectProps {
-	value: string;
-	setValue: Dispatch<SetStateAction<string>>;
-	require?: string;
 	name: string;
-	className?: string;
+	type: string;
 }
 
-const Select = ({
-	setValue,
-	name,
-	className = 'form-select',
-	...props
-}: SelectProps) => {
+const Select = (props: SelectProps) => {
+	const [field] = useField(props);
 	const { filters, filtersLoadingStatus } = useSelector(
 		({ filters }: IStore) => filters
 	);
-	const dispatch = useDispatch();
-	const { request } = useHttp();
-
-	useEffect(() => {
-		dispatch(filtersFetching());
-		request<IFilters>(FILTERS_URL)
-			.then((data) => dispatch(filtersFetched(data)))
-			.catch(() => dispatch(filtersFetchingError()));
-
-		// eslint-disable-next-line
-	}, []);
 
 	const isFetching =
 		filtersLoadingStatus === Statuses.LOADING ||
 		filtersLoadingStatus === Statuses.ERROR;
 
-	const renderOptionsList = (arr: Array<Elements>) => {
-		if (arr.length === 0) {
+	const renderOptionsList = (elements: Array<Elements>) => {
+		if (elements.length === 0) {
 			return <option>There are no elements</option>;
 		}
 
-		return arr.map((element, i) => {
+		return elements.map((element, i) => {
+			if (element === Elements.ALL) return;
 			return (
 				<option key={i} value={element}>
 					{element}
@@ -59,19 +36,17 @@ const Select = ({
 
 	return (
 		<div className="mb-3">
-			<label htmlFor={name} className="form-label">
+			<label className="d-block form-label">
 				Choose the element
+				<select
+					{...props}
+					{...field}
+					disabled={isFetching}
+					className="form-control"
+				>
+					{renderOptionsList(filters.elements)}
+				</select>
 			</label>
-			<select
-				disabled={isFetching}
-				{...props}
-				onChange={(e) => setValue(e.target.value)}
-				className={className}
-				id={name}
-				name={name}
-			>
-				{renderOptionsList(filters)}
-			</select>
 		</div>
 	);
 };

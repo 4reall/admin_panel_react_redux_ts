@@ -1,12 +1,12 @@
 export enum Elements {
-	ALL = 'all',
-	FIRE = 'fire',
-	WATER = 'water',
-	WIND = 'wind',
-	EARTH = 'earth',
+	ALL = 'ALL',
+	FIRE = 'FIRE',
+	WATER = 'WATER',
+	WIND = 'WIND',
+	EARTH = 'EARTH',
 }
 export enum Statuses {
-	LOADING = 'loading',
-	OK = 'ok',
-	ERROR = 'error',
+	LOADING = 'LOADING',
+	OK = 'OK',
+	ERROR = 'ERROR',
 }

@@ -1,35 +1,32 @@
-import { Elements } from '../../types/enums';
+import { useHttp } from '../../hooks/useHttp';
+import { useDispatch } from 'react-redux';
+
+import { heroDeleted, heroesLoadingError } from '../../actions/heroesActions';
+import { getClassByElement } from '../../helpers/helpers';
+
 import { IHero } from '../../types/store';
+import { ElementsClasses } from '../../types/helpers';
+import { HEROES_URL } from '../../constants';
 
-interface HeroesListItemProps {
-	name: string;
-	description: string;
-	element: Elements;
-}
+const elementsClasses: ElementsClasses = {
+	all: 'bg-gradient bg-warning',
+	fire: 'bg-gradient bg-danger',
+	water: 'bg-gradient bg-primary',
+	wind: 'bg-gradient bg-info',
+	earth: 'bg-gradient bg-success',
+};
 
-const HeroesListItem = ({
-	name,
-	description,
-	element,
-}: HeroesListItemProps) => {
-	let elementClassName;
+const HeroesListItem = ({ id, name, description, element }: IHero) => {
+	const { request } = useHttp();
+	const dispatch = useDispatch();
+	let elementClassName = getClassByElement(elementsClasses, element);
 
-	switch (element) {
-		case Elements.FIRE:
-			elementClassName = 'bg-danger bg-gradient';
-			break;
-		case Elements.WATER:
-			elementClassName = 'bg-primary bg-gradient';
-			break;
-		case Elements.WIND:
-			elementClassName = 'bg-success bg-gradient';
-			break;
-		case Elements.EARTH:
-			elementClassName = 'bg-secondary bg-gradient';
-			break;
-		default:
-			elementClassName = 'bg-warning bg-gradient';
-	}
+	const onClick = () => {
+		request(`${HEROES_URL}/${id}`, 'DELETE')
+			.then(() => console.log('Character has been deleted'))
+			.then(() => dispatch(heroDeleted(id)))
+			.catch(() => dispatch(heroesLoadingError()));
+	};
 
 	return (
 		<li
@@ -47,6 +44,7 @@ const HeroesListItem = ({
 			</div>
 			<span className="position-absolute top-0 start-100 translate-middle badge border rounded-pill bg-light">
 				<button
+					onClick={onClick}
 					type="button"
 					className="btn-close btn-close"
 					aria-label="Close"

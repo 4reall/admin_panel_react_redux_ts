@@ -1,33 +1,25 @@
-import React, { ChangeEvent, SetStateAction, Dispatch } from 'react';
+import { useField } from 'formik';
 
 interface InputProps {
-	value: string;
-	setValue: Dispatch<SetStateAction<string>>;
-	require?: string;
 	type: string;
 	name: string;
 	className?: string;
 	placeholder: string;
 }
 
-const Input = ({
-	setValue,
-	name,
-	className = 'form-control',
-	...props
-}: InputProps) => {
+const Input = (props: InputProps) => {
+	const [field, meta] = useField(props);
+	const error =
+		meta.touched && meta.error ? (
+			<div className="text-danger fs-6">{meta.error}</div>
+		) : null;
 	return (
 		<div className="mb-3">
-			<label htmlFor={name} className="form-label fs-4">
+			<label className="d-block form-label fs-4">
 				The name of the new hero
+				<input {...props} {...field} className="form-select" />
+				{error}
 			</label>
-			<input
-				{...props}
-				onChange={(e) => setValue(e.target.value)}
-				className={className}
-				name={name}
-				id={name}
-			/>
 		</div>
 	);
 };

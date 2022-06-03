@@ -1,33 +1,24 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { useField } from 'formik';
 
 interface TextareaProps {
-	value: string;
-	setValue: Dispatch<SetStateAction<string>>;
-	require?: string;
 	name: string;
-	className?: string;
 	placeholder: string;
 	style: object;
 }
 
-const Textarea = ({
-	name,
-	setValue,
-	className = 'form-control',
-	...props
-}: TextareaProps) => {
+const Textarea = (props: TextareaProps) => {
+	const [field, meta] = useField(props);
+	const error =
+		meta.touched && meta.error ? (
+			<div className="text-danger fs-6">{meta.error}</div>
+		) : null;
 	return (
 		<div className="mb-3">
-			<label htmlFor={name} className="form-label fs-4">
+			<label className="d-block form-label fs-4">
 				Description
+				<textarea {...field} {...props} className="form-control" />
 			</label>
-			<textarea
-				{...props}
-				onChange={(e) => setValue(e.target.value)}
-				name={name}
-				className={className}
-				id={name}
-			/>
+			{error}
 		</div>
 	);
 };

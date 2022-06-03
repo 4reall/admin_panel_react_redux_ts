@@ -1,17 +1,7 @@
-// export interface Filters {
-//
-//
-// }
-
 import { Elements, Statuses } from './enums';
 
-export interface IFilters {
-	filters: Array<Elements>;
-	filtersLoadingStatus: Statuses;
-}
-
 export interface IHero {
-	id: number;
+	id: number | string;
 	name: string;
 	description: string;
 	element: Elements;
@@ -20,6 +10,14 @@ export interface IHero {
 export interface IHeroes {
 	heroes: Array<IHero>;
 	heroesLoadingStatus: Statuses;
+}
+
+export interface IFilters {
+	filters: {
+		activeFilter: Elements;
+		elements: Array<Elements>;
+	};
+	filtersLoadingStatus: Statuses;
 }
 
 export interface IStore {
