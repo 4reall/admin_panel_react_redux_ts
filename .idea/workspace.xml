@@ -5,32 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0dca357-b2b0-40d0-beb4-77da16ea753b" name="Changes" comment="Finished delete, add, sort heroes features. Filters are loaded from a json server, delete and add actions send delete and post request to json server">
-      <change afterPath="$PROJECT_DIR$/src/actions/filtersActions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/actions/heroesActions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/helpers.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/actions/heroesActions.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/actions/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/types/helpers.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/heroes.json" beforeDir="false" afterPath="$PROJECT_DIR$/heroes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/index.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Button/button.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/UI/Input/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Input/Input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Input/input.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/UI/Select/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Select/Select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Select/select.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/UI/Textarea/Textarea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Textarea/Textarea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Textarea/textarea.scss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/heroesAddForm/HeroesAddForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heroesAddForm/HeroesAddForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/heroesFilters/HeroesFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heroesFilters/HeroesFilters.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/heroesList/HeroesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heroesList/HeroesList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/heroesListItem/HeroesListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heroesListItem/HeroesListItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useHttp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useHttp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/filtersReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/filtersReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/heroesReducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/heroesReducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/actions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/enums.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/enums.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +119,7 @@
       <workItem from="1653982342907" duration="701000" />
       <workItem from="1654006924537" duration="11350000" />
       <workItem from="1654246462856" duration="1840000" />
-      <workItem from="1654248321623" duration="5453000" />
+      <workItem from="1654248321623" duration="8602000" />
     </task>
     <task id="LOCAL-00001" summary="Created project structure, finished layout">
       <created>1653889521491</created>
@@ -140,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653889521491</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Finished delete, add, sort heroes features. Filters are loaded from a json server, delete and add actions send delete and post request to json server">
+      <created>1654253793697</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1654253793697</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,7 +151,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="development" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

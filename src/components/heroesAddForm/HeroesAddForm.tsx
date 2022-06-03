@@ -76,7 +76,10 @@ const HeroesAddForm = () => {
 					style={{ height: '130px' }}
 				/>
 				<Select type="select" name="element" />
-				<Button type="submit" className="btn btn-primary">
+				<Button
+					type="submit"
+					className="btn-sm btn-primary m-auto d-block"
+				>
 					create
 				</Button>
 			</Form>

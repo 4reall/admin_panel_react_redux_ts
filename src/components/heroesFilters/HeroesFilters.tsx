@@ -24,11 +24,11 @@ import { Elements, Statuses } from '../../types/enums';
 import { FILTERS_URL } from '../../constants';
 
 const elementsClasses: ElementsClasses = {
-	all: 'btn btn-warning',
-	fire: 'btn btn-danger',
-	water: 'btn btn-primary',
-	wind: 'btn btn-info',
-	earth: 'btn btn-success',
+	all: 'btn-sm btn-warning',
+	fire: 'btn-sm btn-danger',
+	water: 'btn-sm btn-primary',
+	wind: 'btn-sm btn-info',
+	earth: 'btn-sm btn-success',
 };
 
 const HeroesFilters = () => {
@@ -61,7 +61,8 @@ const HeroesFilters = () => {
 				getClassByElement(elementsClasses, element),
 				{
 					active: filters.activeFilter === element,
-				}
+				},
+				'mx-1 mt-md-1'
 			);
 			return (
 				<button
@@ -81,10 +82,14 @@ const HeroesFilters = () => {
 		<div>There are no filters</div>
 	);
 	return (
-		<div className="card shadow-lg mt-4">
+		<div className="card shadow-lg mt-md-3 mt-2">
 			<div className="card-body">
-				<p className="card-text">Отфильтруйте героев по элементам</p>
-				<div className="btn-group">{buttons}</div>
+				<p className="card-text text-center mb-md-2">
+					Отфильтруйте героев по элементам
+				</p>
+				<div className="d-flex flex-wrap justify-content-center btn-group">
+					{buttons}
+				</div>
 			</div>
 		</div>
 	);

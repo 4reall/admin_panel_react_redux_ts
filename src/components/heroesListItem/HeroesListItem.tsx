@@ -39,8 +39,8 @@ const HeroesListItem = ({ id, name, description, element }: IHero) => {
 				style={{ objectFit: 'cover' }}
 			/>
 			<div className="card-body">
-				<h3 className="card-title">{name}</h3>
-				<p className="card-text">{description}</p>
+				<h3 className="fs-4 card-title">{name}</h3>
+				<p className="fs-6 card-text">{description}</p>
 			</div>
 			<span className="position-absolute top-0 start-100 translate-middle badge border rounded-pill bg-light">
 				<button

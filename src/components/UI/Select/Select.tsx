@@ -35,7 +35,7 @@ const Select = (props: SelectProps) => {
 	};
 
 	return (
-		<div className="mb-3">
+		<div className="mb-md-3 mb-1">
 			<label className="d-block form-label">
 				Choose the element
 				<select

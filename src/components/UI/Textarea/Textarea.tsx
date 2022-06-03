@@ -13,7 +13,7 @@ const Textarea = (props: TextareaProps) => {
 			<div className="text-danger fs-6">{meta.error}</div>
 		) : null;
 	return (
-		<div className="mb-3">
+		<div className="mb-md-3 mb-1">
 			<label className="d-block form-label fs-4">
 				Description
 				<textarea {...field} {...props} className="form-control" />
