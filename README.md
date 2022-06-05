@@ -1,6 +1,6 @@
 # Getting started
 
-This project uses JSON-server for loading and store data, therefore it's anavailable at gh-pages. So if you want to start the project clone repository and run npm start
+This project uses JSON-server for loading and storing data; therefore it's unavailable at gh-pages. So if you want to start the project, clone the repository and run npm start
 
 ## Stack of technologies used in the project:
 1. HTML
