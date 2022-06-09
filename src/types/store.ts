@@ -1,26 +1,33 @@
 import { Elements, Statuses } from './enums';
+import store from '../store';
 
 export interface IHero {
-	id: number | string;
+	id: string;
 	name: string;
 	description: string;
 	element: Elements;
 }
 
-export interface IHeroes {
+export interface IHeroesStore {
 	heroes: Array<IHero>;
 	heroesLoadingStatus: Statuses;
 }
 
 export interface IFilters {
-	filters: {
-		activeFilter: Elements;
-		elements: Array<Elements>;
-	};
+	activeFilter: Elements;
+	elements: Array<Elements>;
+}
+
+export interface IFiltersStore {
+	filters: IFilters;
 	filtersLoadingStatus: Statuses;
 }
 
 export interface IStore {
-	heroes: IHeroes;
-	filters: IFilters;
+	heroes: IHeroesStore;
+	filters: IFiltersStore;
 }
+
+export type RootState = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

@@ -1,41 +1,29 @@
+import { FILTERS_URL, HEROES_URL } from '../constants';
 import {
-	HERO_DELETED,
-	HERO_POSTED,
-	HEROES_FETCHED,
-	HEROES_LOADING,
-	HEROES_LOADING_ERROR,
-} from '../constants';
-import { HeroesActions } from '../types/actions';
-import { IHero } from '../types/store';
+	heroesLoading,
+	heroesFetched,
+	heroesLoadingError,
+} from '../reducers/heroesSlice';
+import { IFilters, IHero } from '../types/store';
+import { Dispatch } from 'react';
+import {
+	filtersFetched,
+	filtersLoading,
+	filtersLoadingError,
+} from '../reducers/filtersSlice';
 
-export const heroesLoading = (): HeroesActions => {
-	return {
-		type: HEROES_LOADING,
+export const fetchHeroes =
+	(request: <T>(url: string) => Promise<T>) => (next: Dispatch<any>) => {
+		next(heroesLoading());
+		request<IHero[]>(HEROES_URL)
+			.then((data) => next(heroesFetched(data)))
+			.catch(() => next(heroesLoadingError()));
 	};
-};
 
-export const heroesFetched = (heroes: Array<IHero>): HeroesActions => {
-	return {
-		type: HEROES_FETCHED,
-		payload: heroes,
+export const filtersFetch =
+	(request: <T>(url: string) => Promise<T>) => (next: Dispatch<any>) => {
+		next(filtersLoading());
+		request<IFilters>(FILTERS_URL)
+			.then((data) => next(filtersFetched(data)))
+			.catch(() => next(filtersLoadingError()));
 	};
-};
-
-export const heroPosted = (heroes: IHero): HeroesActions => {
-	return {
-		type: HERO_POSTED,
-		payload: heroes,
-	};
-};
-export const heroDeleted = (id: number | string): HeroesActions => {
-	return {
-		type: HERO_DELETED,
-		payload: id,
-	};
-};
-
-export const heroesLoadingError = (): HeroesActions => {
-	return {
-		type: HEROES_LOADING_ERROR,
-	};
-};

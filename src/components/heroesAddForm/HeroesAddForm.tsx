@@ -1,13 +1,3 @@
-// Задача для этого компонента:
-// Реализовать создание нового героя с введенными данными. Он должен попадать
-// в общее состояние и отображаться в списке + фильтроваться
-// Уникальный идентификатор персонажа можно сгенерировать через uiid
-// Усложненная задача:
-// Персонаж создается и в файле json при помощи метода POST
-// Дополнительно:
-// Элементы <option></option> желательно сформировать на базе
-// данных из фильтров
-
 import { Formik, Form, FormikHelpers } from 'formik';
 import Input from '../UI/Input/Input';
 import Textarea from '../UI/Textarea/Textarea';
@@ -15,15 +5,14 @@ import Select from '../UI/Select/Select';
 import Button from '../UI/Button/Button';
 
 import { useHttp } from '../../hooks/useHttp';
-import { useDispatch } from 'react-redux';
 
 import * as Yup from 'yup';
-import { v4 as uuidv4 } from 'uuid';
-import { heroPosted } from '../../actions/heroesActions';
+import { heroPosted } from '../../reducers/heroesSlice';
 
 import { IHero } from '../../types/store';
 import { HEROES_URL } from '../../constants';
 import { Elements } from '../../types/enums';
+import { useAppDispatch } from '../../hooks/hooks';
 
 const validationSchema = Yup.object({
 	name: Yup.string()
@@ -44,16 +33,12 @@ const initialValues: IHero = {
 
 const HeroesAddForm = () => {
 	const { request } = useHttp();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
 	const onSubmit = (values: IHero, actions: FormikHelpers<IHero>) => {
-		const hero = {
-			...values,
-			id: uuidv4(),
-		};
-		request(HEROES_URL, 'POST', JSON.stringify(hero))
+		request(HEROES_URL, 'POST', JSON.stringify({ ...values }))
 			.then(() => console.log('Character has been added'))
-			.then(() => dispatch(heroPosted(hero)))
+			.then(() => dispatch(heroPosted({ ...values })))
 			.catch((err) => console.log(err));
 		actions.resetForm();
 	};

@@ -1,12 +1,12 @@
 import { useHttp } from '../../hooks/useHttp';
-import { useDispatch } from 'react-redux';
 
-import { heroDeleted, heroesLoadingError } from '../../actions/heroesActions';
+import { heroDeleted, heroesLoadingError } from '../../reducers/heroesSlice';
 import { getClassByElement } from '../../helpers/helpers';
 
 import { IHero } from '../../types/store';
 import { ElementsClasses } from '../../types/helpers';
 import { HEROES_URL } from '../../constants';
+import { useAppDispatch } from '../../hooks/hooks';
 
 const elementsClasses: ElementsClasses = {
 	all: 'bg-gradient bg-warning',
@@ -18,7 +18,7 @@ const elementsClasses: ElementsClasses = {
 
 const HeroesListItem = ({ id, name, description, element }: IHero) => {
 	const { request } = useHttp();
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	let elementClassName = getClassByElement(elementsClasses, element);
 
 	const onClick = () => {

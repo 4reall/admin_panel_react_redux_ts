@@ -1,8 +1,8 @@
-import { useSelector } from 'react-redux';
 import { useField } from 'formik';
 
 import { IStore } from '../../../types/store';
 import { Elements, Statuses } from '../../../types/enums';
+import { useAppSelector } from '../../../hooks/hooks';
 
 interface SelectProps {
 	name: string;
@@ -11,7 +11,7 @@ interface SelectProps {
 
 const Select = (props: SelectProps) => {
 	const [field] = useField(props);
-	const { filters, filtersLoadingStatus } = useSelector(
+	const { filters, filtersLoadingStatus } = useAppSelector(
 		({ filters }: IStore) => filters
 	);
 

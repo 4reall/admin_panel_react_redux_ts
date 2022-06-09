@@ -1,8 +1,10 @@
 {
-  "name": "https://4reall.github.io/admin_panel_react_redux_ts",
+  "name": "admin_panel_react_redux_ts",
+  "homepage": "https://4reall.github.io/admin_panel_react_redux_ts/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
@@ -20,6 +22,7 @@
     "react-redux": "^8.0.2",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "reselect": "^4.1.6",
     "sass": "^1.52.1",
     "typescript": "^4.7.2",
     "uuid": "^8.3.2",
