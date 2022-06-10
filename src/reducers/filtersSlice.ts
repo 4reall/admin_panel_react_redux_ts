@@ -1,6 +1,8 @@
 import { IFilters, IFiltersStore } from '../types/store';
 import { Elements, Statuses } from '../types/enums';
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useHttp } from '../hooks/useHttp';
+import { FILTERS_URL } from '../constants';
 
 const initialState: IFiltersStore = {
 	filters: {
@@ -10,13 +12,18 @@ const initialState: IFiltersStore = {
 	filtersLoadingStatus: Statuses.OK,
 };
 
+export const fetchFilters = createAsyncThunk(
+	'filters/fetchFilters',
+	(): Promise<IFilters> => {
+		const { request } = useHttp();
+		return request(FILTERS_URL);
+	}
+);
+
 const filtersSlice = createSlice({
 	name: 'filters',
 	initialState,
 	reducers: {
-		filtersLoading: (state) => {
-			state.filtersLoadingStatus = Statuses.LOADING;
-		},
 		filtersFetched: (state, action: PayloadAction<IFilters>) => {
 			state.filters.activeFilter = action.payload.activeFilter;
 			state.filters.elements = action.payload.elements;
@@ -25,9 +32,20 @@ const filtersSlice = createSlice({
 		filtersChanged: (state, action: PayloadAction<Elements>) => {
 			state.filters.activeFilter = action.payload;
 		},
-		filtersLoadingError: (state) => {
-			state.filtersLoadingStatus = Statuses.ERROR;
-		},
+	},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchFilters.pending, (state) => {
+				state.filtersLoadingStatus = Statuses.LOADING;
+			})
+			.addCase(fetchFilters.fulfilled, (state, action) => {
+				state.filters = action.payload;
+				state.filtersLoadingStatus = Statuses.OK;
+			})
+			.addCase(fetchFilters.rejected, (state) => {
+				state.filtersLoadingStatus = Statuses.ERROR;
+			})
+			.addDefaultCase(() => {});
 	},
 });
 
@@ -35,9 +53,4 @@ const { actions, reducer } = filtersSlice;
 
 export default reducer;
 
-export const {
-	filtersLoading,
-	filtersFetched,
-	filtersChanged,
-	filtersLoadingError,
-} = actions;
+export const { filtersFetched, filtersChanged } = actions;

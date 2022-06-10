@@ -1,14 +1,13 @@
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
 
-import { useHttp } from '../../hooks/useHttp';
 import { useEffect } from 'react';
 
 import { IHero, IStore } from '../../types/store';
 import { Elements, Statuses } from '../../types/enums';
 import { createSelector } from 'reselect';
-import { fetchHeroes } from '../../actions/heroesActions';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { fetchHeroes } from '../../reducers/heroesSlice';
 
 const HeroesList = () => {
 	const store = createSelector(
@@ -19,10 +18,9 @@ const HeroesList = () => {
 
 	const { filter, heroes } = useAppSelector(store);
 	const dispatch = useAppDispatch();
-	const { request } = useHttp();
 
 	useEffect(() => {
-		dispatch(fetchHeroes(request));
+		dispatch(fetchHeroes());
 		// eslint-disable-next-line
 	}, []);
 

@@ -1,6 +1,6 @@
 import { useHttp } from '../../hooks/useHttp';
 
-import { heroDeleted, heroesLoadingError } from '../../reducers/heroesSlice';
+import { heroDeleted } from '../../reducers/heroesSlice';
 import { getClassByElement } from '../../helpers/helpers';
 
 import { IHero } from '../../types/store';
@@ -25,7 +25,7 @@ const HeroesListItem = ({ id, name, description, element }: IHero) => {
 		request(`${HEROES_URL}/${id}`, 'DELETE')
 			.then(() => console.log('Character has been deleted'))
 			.then(() => dispatch(heroDeleted(id)))
-			.catch(() => dispatch(heroesLoadingError()));
+			.catch(() => console.log('Error. Character has not been deleted'));
 	};
 
 	return (

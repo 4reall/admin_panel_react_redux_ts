@@ -29,6 +29,18 @@
       "description": "123",
       "element": "WIND",
       "id": 5
+    },
+    {
+      "name": "123",
+      "description": "123",
+      "element": "EARTH",
+      "id": 6
+    },
+    {
+      "name": "213",
+      "description": "123",
+      "element": "ALL",
+      "id": 7
     }
   ],
   "filters": {

@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useHttp } from '../../hooks/useHttp';
 
 import classNames from 'classnames';
 import { getClassByElement } from '../../helpers/helpers';
-import { filtersChanged } from '../../reducers/filtersSlice';
+import { fetchFilters, filtersChanged } from '../../reducers/filtersSlice';
 
 import { IStore } from '../../types/store';
 import { ElementsClasses } from '../../types/helpers';
 import { Elements, Statuses } from '../../types/enums';
-import { filtersFetch } from '../../actions/heroesActions';
 import { useAppDispatch } from '../../hooks/hooks';
 
 const elementsClasses: ElementsClasses = {
@@ -25,10 +23,9 @@ const HeroesFilters = () => {
 		({ filters }: IStore) => filters
 	);
 	const dispatch = useAppDispatch();
-	const { request } = useHttp();
 
 	useEffect(() => {
-		dispatch(filtersFetch(request));
+		dispatch(fetchFilters());
 		// eslint-disable-next-line
 	}, []);
 
