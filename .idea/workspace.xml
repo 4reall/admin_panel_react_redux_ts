@@ -4,17 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0dca357-b2b0-40d0-beb4-77da16ea753b" name="Changes" comment="Add RTK to the project. Action creators and reducers change with createSlice.">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="e0dca357-b2b0-40d0-beb4-77da16ea753b" name="Changes" comment="Add createAsyncThunk instead of createAction. Delete actions folder">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/heroes.json" beforeDir="false" afterPath="$PROJECT_DIR$/heroes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/heroesActions.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/App/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/UI/Select/Select.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/UI/Select/Select.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/heroesAddForm/HeroesAddForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heroesAddForm/HeroesAddForm.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/heroesFilters/HeroesFilters.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heroesFilters/HeroesFilters.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/heroesList/HeroesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heroesList/HeroesList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/heroesListItem/HeroesListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/heroesListItem/HeroesListItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useHttp.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useHttp.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/filtersSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/filtersSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/heroesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/heroesSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/helpers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/filtersSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/filtersSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/heroesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/heroesSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/enums.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/helpers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/store.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +92,7 @@
       <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/store" />
       <recent name="$PROJECT_DIR$/src/types/actions" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -134,7 +143,9 @@
       <workItem from="1654423479574" duration="2413000" />
       <workItem from="1654689581658" duration="20391000" />
       <workItem from="1654852349399" duration="8000" />
-      <workItem from="1654852369980" duration="3651000" />
+      <workItem from="1654852369980" duration="5482000" />
+      <workItem from="1655192940718" duration="42000" />
+      <workItem from="1655200083184" duration="17968000" />
     </task>
     <task id="LOCAL-00001" summary="Created project structure, finished layout">
       <created>1653889521491</created>
@@ -164,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654800254401</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add createAsyncThunk instead of createAction. Delete actions folder">
+      <created>1654856537342</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1654856537343</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,7 +223,8 @@
     <MESSAGE value="Added responsive design" />
     <MESSAGE value="Add RTK to the project. Actions creators and reducers change with createSlice." />
     <MESSAGE value="Add RTK to the project. Action creators and reducers change with createSlice." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add RTK to the project. Action creators and reducers change with createSlice." />
+    <MESSAGE value="Add createAsyncThunk instead of createAction. Delete actions folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add createAsyncThunk instead of createAction. Delete actions folder" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

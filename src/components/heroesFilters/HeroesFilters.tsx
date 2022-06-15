@@ -3,12 +3,17 @@ import { useSelector } from 'react-redux';
 
 import classNames from 'classnames';
 import { getClassByElement } from '../../helpers/helpers';
-import { fetchFilters, filtersChanged } from '../../reducers/filtersSlice';
+import {
+	fetchFilters,
+	filtersChanged,
+	selectAllFilters,
+} from '../../store/reducers/filtersSlice';
 
-import { IStore } from '../../types/store';
+import { Filters, IFiltersState } from '../../types/store';
 import { ElementsClasses } from '../../types/helpers';
-import { Elements, Statuses } from '../../types/enums';
+import { Statuses } from '../../types/helpers';
 import { useAppDispatch } from '../../hooks/hooks';
+import store from '../../store/store';
 
 const elementsClasses: ElementsClasses = {
 	all: 'btn-sm btn-warning',
@@ -19,8 +24,9 @@ const elementsClasses: ElementsClasses = {
 };
 
 const HeroesFilters = () => {
-	const { filters, filtersLoadingStatus } = useSelector(
-		({ filters }: IStore) => filters
+	const filters = selectAllFilters(store.getState());
+	const { activeFilter, filtersLoadingStatus } = useSelector(
+		(state: IFiltersState) => state
 	);
 	const dispatch = useAppDispatch();
 
@@ -33,33 +39,33 @@ const HeroesFilters = () => {
 		filtersLoadingStatus === Statuses.LOADING ||
 		filtersLoadingStatus === Statuses.ERROR;
 
-	const renderFiltersList = (elements: Array<Elements>) => {
-		if (elements.length === 0) {
+	const renderFiltersList = (filters: Filters) => {
+		if (filters.length === 0) {
 			return <div>There are no filters</div>;
 		}
 
-		return elements.map((element, i) => {
+		return filters.map((filter) => {
 			const classes = classNames(
-				getClassByElement(elementsClasses, element),
+				getClassByElement(elementsClasses, filter.element),
 				{
-					active: filters.activeFilter === element,
+					active: activeFilter === filter.element,
 				},
 				'mx-1 mt-md-1'
 			);
 			return (
 				<button
-					onClick={() => dispatch(filtersChanged(element))}
+					onClick={() => dispatch(filtersChanged(filter.element))}
 					className={classes}
-					key={i}
+					key={filter.id}
 				>
-					{element}
+					{filter.element}
 				</button>
 			);
 		});
 	};
 
 	const buttons = !isFetching ? (
-		renderFiltersList(filters.elements)
+		renderFiltersList(filters)
 	) : (
 		<div>There are no filters</div>
 	);

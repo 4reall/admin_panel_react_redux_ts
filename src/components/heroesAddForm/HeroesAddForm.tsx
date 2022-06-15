@@ -7,11 +7,11 @@ import Button from '../UI/Button/Button';
 import { useHttp } from '../../hooks/useHttp';
 
 import * as Yup from 'yup';
-import { heroPosted } from '../../reducers/heroesSlice';
+import { heroPosted } from '../../store/reducers/heroesSlice';
 
 import { IHero } from '../../types/store';
 import { HEROES_URL } from '../../constants';
-import { Elements } from '../../types/enums';
+import { Elements } from '../../types/helpers';
 import { useAppDispatch } from '../../hooks/hooks';
 
 const validationSchema = Yup.object({

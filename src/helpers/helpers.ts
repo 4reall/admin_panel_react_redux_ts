@@ -1,5 +1,5 @@
 import { IHero } from '../types/store';
-import { Elements } from '../types/enums';
+import { Elements } from '../types/helpers';
 import { ElementsClasses } from '../types/helpers';
 
 export const getClassByElement = (

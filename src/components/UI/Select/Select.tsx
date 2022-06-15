@@ -1,8 +1,9 @@
 import { useField } from 'formik';
 
-import { IStore } from '../../../types/store';
-import { Elements, Statuses } from '../../../types/enums';
+import { Filters, RootState } from '../../../types/store';
+import { Elements, Statuses } from '../../../types/helpers';
 import { useAppSelector } from '../../../hooks/hooks';
+import { selectAllFilters } from '../../../store/reducers/filtersSlice';
 
 interface SelectProps {
 	name: string;
@@ -11,24 +12,26 @@ interface SelectProps {
 
 const Select = (props: SelectProps) => {
 	const [field] = useField(props);
-	const { filters, filtersLoadingStatus } = useAppSelector(
-		({ filters }: IStore) => filters
+
+	const filtersLoadingStatus = useAppSelector(
+		(state: RootState) => state.filters.filtersLoadingStatus
 	);
+	const filters = useAppSelector(selectAllFilters);
 
 	const isFetching =
 		filtersLoadingStatus === Statuses.LOADING ||
 		filtersLoadingStatus === Statuses.ERROR;
 
-	const renderOptionsList = (elements: Array<Elements>) => {
-		if (elements.length === 0) {
+	const renderOptionsList = (filters: Filters) => {
+		if (filters.length === 0) {
 			return <option>There are no elements</option>;
 		}
 
-		return elements.map((element, i) => {
-			if (element === Elements.ALL) return;
+		return filters.map((filter, i) => {
+			if (filter.element === Elements.ALL) return null;
 			return (
-				<option key={i} value={element}>
-					{element}
+				<option key={i} value={filter.element}>
+					{filter.element}
 				</option>
 			);
 		});
@@ -44,7 +47,7 @@ const Select = (props: SelectProps) => {
 					disabled={isFetching}
 					className="form-control"
 				>
-					{renderOptionsList(filters.elements)}
+					{renderOptionsList(filters)}
 				</select>
 			</label>
 		</div>

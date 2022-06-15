@@ -1,6 +1,6 @@
 import { useHttp } from '../../hooks/useHttp';
 
-import { heroDeleted } from '../../reducers/heroesSlice';
+import { heroDeleted } from '../../store/reducers/heroesSlice';
 import { getClassByElement } from '../../helpers/helpers';
 
 import { IHero } from '../../types/store';

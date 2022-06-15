@@ -1,5 +1,13 @@
-import { Elements, Statuses } from './enums';
-import store from '../store';
+import { Elements, Statuses } from './helpers';
+import store from '../store/store';
+import { EntityState } from '@reduxjs/toolkit';
+
+export interface IFilter {
+	element: Elements;
+	id: number | string;
+}
+
+export type Filters = IFilter[];
 
 export interface IHero {
 	id: string;
@@ -8,24 +16,14 @@ export interface IHero {
 	element: Elements;
 }
 
-export interface IHeroesStore {
-	heroes: Array<IHero>;
+export type Heroes = IHero[];
+
+export interface IHeroesState extends EntityState<IHero> {
 	heroesLoadingStatus: Statuses;
 }
-
-export interface IFilters {
+export interface IFiltersState extends EntityState<IFilter> {
 	activeFilter: Elements;
-	elements: Array<Elements>;
-}
-
-export interface IFiltersStore {
-	filters: IFilters;
 	filtersLoadingStatus: Statuses;
-}
-
-export interface IStore {
-	heroes: IHeroesStore;
-	filters: IFiltersStore;
 }
 
 export type RootState = ReturnType<typeof store.getState>;
